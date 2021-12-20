@@ -1,4 +1,4 @@
-# Prework: Configuración de Entorno de Desarrollo en windows.
+# Prework: Configuración de Entorno de Desarrollo en windows
 
 La idea de este curso es que tu termines preparad@ para poder comenzar a aprender Desarrollo Web desde Cero.
 
@@ -10,7 +10,7 @@ Si no quieres usar WSL o una maquina virtual, entonces tendríamos una situació
 
 Este curso es bien importante que lo vallas haciendo paso a paso conmigo, también que sigas las instrucciones al pie de la letra.
 
-## Editor de texto: instalando el tuyo.
+## Editor de texto: instalando el tuyo
 La mayoría de las personas hoy en día están utilizando Visual Studio Code y es el que vamos a estar utilizando en nuestros cursos, así que es el que vamos a instalar.
 
 Visual Studio Code es un Editor de Código free, están construido encima de Open source y se ejecuta y corre en Windows, Linux o Mac. Te sirve para todo tipo de funcionalidades, para Web, para Apps moviles, para Ciencia de Datos y desarrollo de videojuegos, Visual Studio Code es muy versatil y te sirve para programar todo tipo de aplicaciones. Tiene un enfoque modular ya que puedes instalar solo lo que necesites para programar.
@@ -33,3 +33,20 @@ Las Extenciones a instalr son las siguientes:
 - Auto Rename Tag
 - Material Icon Theme
 
+## ¿Qué es Windows Subsystem for Linux?
+Esto es lo que Microsoft biene desarrollando para poder volver a windows 10 una plataforma competitiva para poder desarrollar. Ya que Windows no servía para desarrollo de aplicaciones web. Hoy en día con día con Windows Subsystem for Linux, todo lo puedes hacer desde una terminal de Linux dentro de tu sistema operativo windows. Esto es posible gracias a que microsoft esta desarrollando esta tecnología y esta en su versión 2. Lo que tiene es un nucleo de linux que además, combina tecnologías de virtualización que le permiten ejecutarse super rápido en windows. Con esto te quiero decir que, es de buen rendimiento y es basntante útil.
+
+Si tu no tienes instalado windows 10, primero esfuerzate por tenerlo, vale mucho la pena. Es un gran sistema operativo y se esta volviendo una muy buena herramienta de trabajo para desarrollar.
+
+**Para actualizar a WSL 2**, ***debe ejecutar Windows 10. Para sistemas x64: La versión 1903 o posterior, con la compilación 18362 o posterior. Para sistemas ARM64: La versión 2004 o posterior, con la compilación 19041 o posterior.***
+
+Para comprobar la versión de mi windows 10 utilizamos el Ejecutador de tareas y escribimos el comando `winver`. Si tu no tienes esta versión lo que puedes hacer es **Buscar actualizaciones** en windows update.
+
+## Instalación de Windows Subsystem for Linux
+Ya podemos instalar WSL. ¡Hagamoslo!
+
+1. Habilite el subsistema de Windows para Linux. Abra PowerShell como administrador (menú Inicio> PowerShell> haga clic con el botón derecho> Ejecutar como administrador) e ingrese este comando:
+
+```shell
+dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+```
