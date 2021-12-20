@@ -90,6 +90,14 @@ Listo! Ahora le deberá aparecer el mensaje: `Installation successful!`. ***Lueg
 **¡FELICIDADES! ¡Ha instalado y configurado con éxito una distribución de Linux que está completamente integrada con su sistema operativo Windows!** para mayor información puede consultar los [Pasos de instalación manual para versiones anteriores de WSL](https://docs.microsoft.com/en-us/windows/wsl/install-manual "Pasos de instalación manual para versiones anteriores de WSL").
 
 
+## Configuración de Ubuntu en WSL
+Una vez creada su nueva distribución de Linux podemos hacer uso de nuestro **conocimiento en Linea de comandos** para crear directorios y movernos entre ellos.
+
+Dentro de nuestro directorio HOME, al cual podemos dirigirnos usando el comando: `cd`, hay que crear nuestro directorio de trabajo. Algo que te tiene que quedar muy claro es que cuando estamos trabajando en WSL 2 para asegurarnos la máxima compatibilidad con todo lo que puedes llegar a trabajar después es super importante que te asegures de que todos tus proyectos están viviendo dentro de Ubuntu, dentro de tu HOME. Así que debermos crear una carpeta aquí la cual será donde vamos a almacenar todos nuestros proyectos que vamos a trabajar.
+
+Para crear el directorio podemos usar el comando: `mkdir <nombre del directorio>`
+
+Si tu le pones **sudo** al inicio de `mkdir`, vas a crear una carpeta pero con permisos de administrador. Siempre que nececites permisos de administrador en algo de tu Ubuntu vamos a utilizar *sudo*.
 
 
 
