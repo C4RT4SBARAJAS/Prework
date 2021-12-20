@@ -99,5 +99,66 @@ Para crear el directorio podemos usar el comando: `mkdir <nombre del directorio>
 
 Si tu le pones **sudo** al inicio de `mkdir`, vas a crear una carpeta pero con permisos de administrador. Siempre que nececites permisos de administrador en algo de tu Ubuntu vamos a utilizar *sudo*.
 
+## Windows Terminal
+A continuación te enseñaré cómo usar Ubuntu 20.04 desde Windows Terminal. Para ello:
+
+1. Lo primero que vamos a hacer es **abrir Windows Terminal**. Esto nos abre esta nueva terminal que es super super cool. A mi me gusta porque tiene la características de abrir varias veces nuestra Terminal en una sola ventana. También podemos comfigurarla a nuestro gusto.
+2. Hacemos click en la **flechita hacia abajo 🔽**, aun lado de abrir una nueva pestaña. Y nos dirigimos a **Configuración**. Esto nos abrira la ventaja de configuración de Windows Terminal. Aquí deberas elegir como:
+
+- Perfil predeterminado: Ubuntu-20.04
+- Iniciar al inicio del equipo: Desactivado
+- Modo de inicio: Maximizada
+- Comportamiento de una nueva instancia: Dejar el que tiene por defecto
+- Tamaño de incio: Dejar el que tiene por defecto
+
+Damos click en Guardar o en Cancelar para recuperar los valores por defecto y !Listo!
+Ahora tenemos una Terminal mucho más editable y configurable en colores, en lo que tu quieras lista para trabajar.
+
+## ¿Cómo instalar gestores de paquetes o manejadores de dependencias?
+Pasa que Ubuntu y Debian son sistemas operativos basados en Linux, sistemas operativos de Software libre, y estos sistemas operativos utilizan algo llamados gestor de paquetes o manejador de dependencias. Imaginatelo como que son Tiendas como la Microsoft Store, estos gestores de paquetes tienen un repositorio de dependencias, es decir donde almacenan todo lo que tu le puedes instalar a tu Ubuntu. Ahí tu puedes encontrar Software de todo tipo, utilidades de todo tipo para tu sistema y lo tienen registrado en este repositorio de dependencias. Entonces Ubuntu simplemente le dice al repositorio de dependencias ¡Oye hay alguna novedad de todo lo que yo tengo instalado, en el repostorio que necesita actualizar! y sí el repositorio le dice ¡Si, tienes estas novedades actualizalas! tu las puedes actualizar. Esto de que nosotros le preguntemos al repositorio de dependencias si hay cosas nuevas se hace con: `apt -get update`. Para hacerlo con permisos de administrador utilizamos el comando: `sudo apt -get update`
+
+Si tu quieres aplicar estas cosas nuevas, tienes que usar el comando: `apt -get upgrade`. Para hacerlo con permisos de administrador utilizamos el comando: `sudo apt -get upgrade`.
+
+Siempre que te detenga la ejecución por algo de `Permision denied`, pon **sudo** 
+antes de la instrucción, y eso te ayuda a resolverlo.
+
+Para instalar algo nuevo utilizamos el comando: `sudo apt install <nombre de lo qué quiero instalar>`. Siempre que vallas a instalar algo en tu Ubuntu debes saber para qué lo quieres. Sino no andes instalando cosas que no, eso es regla general en cualquier sistema operativo.
+
+## Instalando Git
+
+No hay un solo desarrollador o desarrolladora que profesional, que pueda decir que se volvio desarrollador o desarrolladora sin saber Git. ¡No existe! Tienes que dominar Git y tienes que dominar GitHub.
+
+Git es el gestor de versiones que nosotros estamos utilizando como el defacto en la industria y GitHub es una plataforma donde todos los equipos van subiendo su código, colaboran entre ellos, entre muchas cosas más.
+
+Si tu quieres borrar un directorio que tiene contendio adentro sin haber inicializado antes un repositorio de Git, utilizamos el comando de borrador recursivo: `rm -rf <nombre del directorio>`. Ubicandonos primero en la carpeta donde esta el directorio que queremos borrar.
+
+Para instalar Git lo primero que hay que hacer verificar si no ya está instalado en nuestro programa. Para ello utilizamos el comando: `git ---version`. En mi caso ya estaba instalado Git en la versión `2.25.1`. En caso de que a ti no te aparezca nada con este comando, para instalar Git utilizamos primero el comando `sudo apt -get update` y luego`sugo apt -get upgrade`, porque siempre es una muy buena práctica que actualices tus paquetes cuando vas a instalar sofware nuevo en tu Ubuntu, es lo correcto. Entonces hecho esto intalamos Git con el comando: `sudo apt install git`. Y damos Enter. En mi caso me dirá que Git ya está instalado.
+
+## Vinculando nuestra llave SSH en GitHub
+El curso de Git-y-GitHub-Avanzado disponible en esta cuenta de GitHub, es el que te enseña todo sobre esta herramienta y esta plataforma. Pero igual yo quiero dejarte ya con tu conexión lista desde tu terminal de Ubuntu en Windows hacia GitHub. Así que hagamos eso.
+
+1. Asegurate primero tener una cuenta de GitHub y haber iniciado sesión.
+2. Nos dirigimos al HOME usando el comando `cd`.
+3. Para crear la llave SSH utilizamos el comando `ssh-keygen -t rsa -b 4096 -C "<tu email en GitHub>"`. El número **4096** indica la complejidad del algoritmo. Y damos **Enter**.
+4. Ésto nos dira **generando llave publica y privada**. Y también **nos dira dónde debemos guardar la llave**. Aquí puedes colocar otra carpeta. Pero honestamente no se los recomiendo porque por defecto te la guarda en el HOME. Por eso es importante dirigirnos al HOME antes de crear la llave. La ruta se vería algo así: `(/home/<nombre de usuario>/.ssh/id_rsa>)`. Como podemos observar también me crea una carpeta `.ssh`, la cual es una carpeta oculta. Y un archivo `id_rsa` sin extención. No hagas nada simplemente da un **Enter**.
+5. Y listo. Te indica que tu tu identificación ha sido guardada en: `/home/<nombre de usuario>/.ssh/id_rsa>`. Te indica que tu llave pública ha sido guardada en `/home/<nombre de usuario>/.ssh/id_rsa.pub>`. Y te genera un **fingerprint** y un **randomart image**. Estas son maneras de cofirmar que tu llave es de verdad.
+
+No es suficiente con lo que hicimos. El procedimiento es el mismo en Windows y Linux, pero en Mac no. Porque una vez tienes tu llave la tienes que agregar al entorno. Es decir, que el sistema operativo donde tu trabajas sepa que la llave existe. En Windows o Linux:
+
+1. Tienes que revisar que el servido de llaves SSH este prendido. Para ello utilizamos el comando `eval $(ssh-agent -s)`. Al ejecutarlo te tiene que salir algo así: `Agent pid <numero>`. El `<numero>` indica que el proceso está corriendo. Entonces todo está bien.
+2. El siguiente paso es agregar la llave a nuestro sistema, decirle que existe. Para ello tenemos que recordar donde la creamos: `(/home/<nombre de usuario>/.ssh/id_rsa>)` es decir en el HOME. Para dirigirnos ahí usamos el comando `cd`.
+3. Una vez en el HOME utilizamos el comando `ssh-add ~/.ssh/id_rsa`. Nos muestara las dos llaves:` id-rsa` y `id-rsa.pub`. Debo agregar la llave privada la que no tiene extensión. Así que volvemos a ejecutar el comando `ssh-add ~/.ssh/id_rsa`. Y listo. Se nos mostrará el siguiente mensaje: `Identity added: <ruta de la llave en el home> (<correo electronico>)`.
+
+## inicializar un repositorio de Git y traer los archivos de mi repositorio en GitHub
+
+Ahora ya podemos inicializar un repositorio de Git y traer los archivos de mi repositorio en GitHub. Para ello:
+
+1. Creamos un directorio de trabajo.
+2. Dentro del directorio que acabamos de crear inicializamos Git con el comando `git init`.
+3. Cambiamos la configuración del nombre de usuario en Git  con el comando: `git config --global user.name "<nombre de usuario>"` y cambiamos la configuración del email en Git con el comando: `git config --global user.email "<correo electrónico>"`.
+4. Agregamos un origen remoto, debiendo comprobar que estamos el directorio o repositorio correcto. Para agregarlo utilizamos el comando: `git remote add origin <dirección del respositorio remoto en GitHub>`. Para agregar la `<dirección del respositorio remoto en GitHub>` utilizamos la pestaña **Code** en GitHub donde nos da la opción de ***Clone*** por **HTTPS** O **SSH**. Copiamos la URL elegida al comando `git remote` y damos **Enter**. Lo que ocurre es que se agrega un origen remoto al cual podemos hacer **fetch** y **push**.
+5. Para visualizar esta información utilizamos el comando `git remote -v`. Mostrando además la URL elegida para el origen remoto.
+6. Listo ahora podemos hacer un `git pull origin master` para traernos todos los archivos que están en mi repositorio en GitHub.
+
 
 
