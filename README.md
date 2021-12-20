@@ -38,7 +38,10 @@ Esto es lo que Microsoft biene desarrollando para poder volver a windows 10 una 
 
 Si tu no tienes instalado windows 10, primero esfuerzate por tenerlo, vale mucho la pena. Es un gran sistema operativo y se esta volviendo una muy buena herramienta de trabajo para desarrollar.
 
-**Para actualizar a WSL 2**, ***debe ejecutar Windows 10. Para sistemas x64: La versión 1903 o posterior, con la compilación 18362 o posterior. Para sistemas ARM64: La versión 2004 o posterior, con la compilación 19041 o posterior.***
+Para actualizar a WSL 2, debe ejecutar Windows 10.
+- Para sistemas x64: versión 1903 o superior, con compilación 18362 o superior.
+- Para sistemas ARM64: versión 2004 o superior, con compilación 19041 o superior.
+- Las versiones anteriores a 18362 no son compatibles con WSL 2. Utilice el Asistente de actualización de Windows para actualizar su versión de Windows.
 
 Para comprobar la versión de mi windows 10 utilizamos el Ejecutador de tareas y escribimos el comando `winver`. Si tu no tienes esta versión lo que puedes hacer es **Buscar actualizaciones** en windows update.
 
@@ -50,3 +53,43 @@ Ya podemos instalar WSL. ¡Hagamoslo!
 ```shell
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 ```
+Damos **Enter** y nos aparecerá el siguiente mensaje: `Enabling feature(s)`. Y al final si todo salio bien: `The operation completed successfully`.
+
+2. Habilitar la función de máquina virtual. Abra PowerShell como administrador y ejecute:
+
+````shell
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+````
+
+3. Establezca WSL 2 como su versión predeterminada. Abra PowerShell y ejecute este comando para configurar WSL 2 como la versión predeterminada al instalar una nueva distribución de Linux:
+
+````shell
+wsl --set-default-version 2
+````
+
+Si nos aparece un error **reinicamos la computadora** y listo. Sino funciona deberemos **habilitar la virtualización en la BIOS**.
+
+4. Instale la distribución de Linux que prefiera. Para este caso usaremos **Ubuntu 20.04 LTS**. Desde la **Microsoft Store**.
+
+5. **Abrimos Ubuntu 20.04 LTS**. La primera vez que inicie una distribución de Linux recién instalada, se abrirá una ventana de consola y se le pedirá que espere uno o dos minutos para que los archivos se descompriman y se almacenen en su PC. Debiendo aparecer el mensaje: `Installation successful!`.
+
+***Si le aparece un error*** entonces **Descargue el paquete de actualización del kernel de Linux**:
+
+[https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi](https://wslstorestorage.blob.core.windows.net/wslblob/wsl_update_x64.msi)
+
+Ejecute el paquete de actualización descargado en el paso anterior. (Haga doble clic para ejecutar: se le solicitarán permisos elevados, seleccione "sí" para aprobar esta instalación).
+
+Nuevamente **Establezca WSL 2 como su versión predeterminada**:
+
+````shell
+wsl --set-default-version 2
+````
+
+Listo! Ahora le deberá aparecer el mensaje: `Installation successful!`. ***Luego, deberá crear una cuenta de usuario y una contraseña para su nueva distribución de Linux.***
+
+**¡FELICIDADES! ¡Ha instalado y configurado con éxito una distribución de Linux que está completamente integrada con su sistema operativo Windows!** para mayor información puede consultar los [Pasos de instalación manual para versiones anteriores de WSL](https://docs.microsoft.com/en-us/windows/wsl/install-manual "Pasos de instalación manual para versiones anteriores de WSL").
+
+
+
+
+
