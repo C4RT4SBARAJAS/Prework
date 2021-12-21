@@ -213,7 +213,7 @@ wget https://rstudio.org/download/latest/stable/server/bionic/rstudio-server-lat
 sudo gdebi rstudio-server-latest-amd64.deb
 ```
 
-5. **Start your RStudio Server.** *Ahora que tenemos RStudio Server instalado, podemos iniciarlo.* Escribe el siguiente comando en la terminal de Ubuntu y presiona Enter.
+5. **Inicie su servidor RStudio.** *Ahora que tenemos RStudio Server instalado, podemos iniciarlo.* Escribe el siguiente comando en la terminal de Ubuntu y presiona Enter.
 
 ```shell
 sudo rstudio-server start
@@ -228,4 +228,10 @@ sudo rstudio-server start
 ```shell
 sudo rstudio-server stop
 ```
+9. **Instalar paquetes de R en RStudio Server.*** Necesitaremos reinstalar todos nuestros paquetes en la máquina virtual de Ubuntu.* Escriba en la consola de RStudio Server como lo haría en R. Por ejemplo, use la función `install.packages()` para instalar los paquetes que desee. La única diferencia que he encontrado es que ocasionalmente un paquete con código compilado necesitará algo para ser instalado también en Ubuntu para que funcione. Por ejemplo, para que `rstan` funcione, necesitaba instalar la dependencia `V8 (Motor de JavaScript integrado para R)`, pero esto no se instalaría en R hasta que instale `libnode-dev` en Ubuntu:
 
+```shell
+sudo apt-get install -y libv8-dev
+```
+
+Esto quedó bastante claro en el [stio web](https://jeroen.cran.dev/V8/ "stio web") de `V8`, así que busque un poco si tiene problemas.
