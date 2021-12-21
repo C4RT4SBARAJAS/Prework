@@ -169,6 +169,9 @@ Aquí hay una guía visual súper fácil para configurar y ejecutar RStudio Serv
 
 ```shell
 sudo apt update
+```
+
+```shell
 sudo apt upgrade -y
 ```
 
@@ -178,7 +181,16 @@ Deberá ingresar su contraseña recién creada y presionar Enter para confirmar 
 
 ```shell
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+```
+
+```shell
 sudo add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/'
+```
+
+```shell
 sudo apt update
+```
+
+```shell
 sudo apt install -y r-base r-base-core r-recommended r-base-dev gdebi-core build-essential libcurl4-gnutls-dev libxml2-dev libssl-dev
 ```
