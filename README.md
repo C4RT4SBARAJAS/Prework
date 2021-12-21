@@ -223,7 +223,7 @@ sudo rstudio-server start
 
 7. **Cree (o abra) proyectos de RStudio en el sistema de archivos de Windows.** *Me parece más conveniente guardar los archivos creados en mi máquina virtual Ubuntu en mi sistema de archivos de Windows. Esto me permite administrar mis archivos de entrada y salida en Windows.* En nuestra ventana RStudio Server, haga clic con el botón izquierdo en el menú **"File"** y seleccione **"New project ..."** (o "Abrir proyecto ..."). Navegue por el asistente de creación (o apertura) de proyectos como lo haría normalmente en Windows, pero cuando llegue el momento de seleccionar la ubicación del archivo de su proyecto, haga clic en el **botón** `...` (vea la imagen a continuación), escriba `/ mnt /` y haga clic en **"Aceptar"**. Le mostrará las letras de la unidad en su sistema de archivos de Windows (por ejemplo, **una carpeta llamada c** contendrá todo en la unidad C :). Luego puede elegir la carpeta en su sistema de archivos de Windows en la que desea que **viva el proyecto**.
 
-8. **Stopping your RStudio Server.** *Cuando haya terminado con su sesión, además de cerrar la ventana de su navegador, debe detener su servidor RStudio.* Escriba en la consola de Ubuntu el siguiente comando y presione Enter:
+8. **Detener su servidor RStudio.** *Cuando haya terminado con su sesión, además de cerrar la ventana de su navegador, debe detener su servidor RStudio.* Escriba en la consola de Ubuntu el siguiente comando y presione Enter:
 
 ```shell
 sudo rstudio-server stop
