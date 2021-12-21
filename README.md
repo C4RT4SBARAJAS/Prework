@@ -1,8 +1,8 @@
 # Prework: Configuración de Entorno de Desarrollo en windows
 
-La idea de este curso es que tu termines preparad@ para poder comenzar a aprender Desarrollo Web desde Cero.
+La idea de este curso es que tu termines preparad@ para poder comenzar a aprender Ciencia de Datos con R y RStudio Server.
 
-Aquí vamos a configurar nuestro navegador, vamos a conocer que opciones de navegadores tenemos, también vamos a preparar nuestro editor de código, lo ideal es que aquí te estamos dejando list@ para tu camino como desarrollador@ web. Luego de esto nos vamos a pasar a ver algo super interesante que esl el Windows Subsystem for Linux, que basicamente te permite instalar un sistema operativo Linux dentro de tu Windows, que va a correr super rápido, super eficiente y eso te va a permitir ejecutar todas las herramientas de desarrollo, y no vas a tener un bloqueo para desarrollar nada, todo va a ir fluyendo. Vamos a dejar bien configurado nuestro WSL. Luego de esto hablaremos brevemente de Git y GitHub.
+Aquí vamos a preparar nuestro editor de código, lo ideal es que aquí te estamos dejando list@ para tu camino como Data scientist. Luego de esto nos vamos a pasar a ver algo super interesante que esl el Windows Subsystem for Linux, que basicamente te permite instalar un sistema operativo Linux dentro de tu Windows, que va a correr super rápido, super eficiente y eso te va a permitir ejecutar todas las herramientas de desarrollo, y no vas a tener un bloqueo para desarrollar nada, todo va a ir fluyendo. Vamos a dejar bien configurado nuestro WSL. Luego de esto hablaremos brevemente de Git y GitHub. Luego te enseñaré como instalr R y RStudio Server dentro de Ubuntu, y así poder usar una interfaz mucho más gráfica.
 
 En caso de que tu no tengas una computadora con windows 10, no importa, pues puedes aprender a montar una maquina virtual de linux. Utilizando el sistema operativo Ubuntu.
 
@@ -93,13 +93,15 @@ Listo! Ahora le deberá aparecer el mensaje: `Installation successful!`. ***Lueg
 ## Configuración de Ubuntu en WSL
 Una vez creada su nueva distribución de Linux podemos hacer uso de nuestro **conocimiento en Linea de comandos** para crear directorios y movernos entre ellos.
 
-Dentro de nuestro directorio HOME, al cual podemos dirigirnos usando el comando: `cd`, hay que crear nuestro directorio de trabajo. Algo que te tiene que quedar muy claro es que cuando estamos trabajando en WSL 2 para asegurarnos la máxima compatibilidad con todo lo que puedes llegar a trabajar después es super importante que te asegures de que todos tus proyectos están viviendo dentro de Ubuntu, dentro de tu HOME. Así que debermos crear una carpeta aquí la cual será donde vamos a almacenar todos nuestros proyectos que vamos a trabajar.
+Dentro de nuestro directorio HOME en Ubuntu, al cual podemos dirigirnos usando el comando: `cd`, hay que crear nuestro directorio de trabajo. Algo que te tiene que quedar muy claro es que cuando estamos trabajando en WSL 2 para asegurarnos la máxima compatibilidad con todo lo que puedes llegar a trabajar después es super importante que te asegures de que todos tus proyectos están viviendo dentro de Ubuntu, dentro de tu HOME. Así que debermos crear una carpeta aquí la cual será donde vamos a almacenar todos nuestros proyectos que vamos a trabajar.
 
 Para crear el directorio podemos usar el comando: `mkdir <nombre del directorio>`
 
 Si tu le pones **sudo** al inicio de `mkdir`, vas a crear una carpeta pero con permisos de administrador. Siempre que nececites permisos de administrador en algo de tu Ubuntu vamos a utilizar *sudo*.
 
-## Windows Terminal
+## Instalación de Windows Terminal
+ Instale  **Windows Terminal** desde la **Microsoft Store**.
+
 A continuación te enseñaré cómo usar Ubuntu 20.04 desde Windows Terminal. Para ello:
 
 1. Lo primero que vamos a hacer es **abrir Windows Terminal**. Esto nos abre esta nueva terminal que es super super cool. A mi me gusta porque tiene la características de abrir varias veces nuestra Terminal en una sola ventana. También podemos comfigurarla a nuestro gusto.
@@ -160,5 +162,23 @@ Ahora ya podemos inicializar un repositorio de Git y traer los archivos de mi re
 5. Para visualizar esta información utilizamos el comando `git remote -v`. Mostrando además la URL elegida para el origen remoto.
 6. Listo ahora podemos hacer un `git pull origin master` para traernos todos los archivos que están en mi repositorio en GitHub.
 
+## Running RStudio Server via Ubuntu 20 on Windows 10
+Aquí hay una guía visual súper fácil para configurar y ejecutar RStudio Server para Ubuntu 20 en Windows 10. Esto es útil si desea ejecutar R para Linux (por ejemplo, debido a su cálculo más rápido y mejor paralelización o simplemente para hacer cross- desarrollo de la plataforma) mientras está en una máquina con Windows. Aunque ya existen varias guías de este tipo (vinculadas a continuación), esta combina el contenido de varias y, mediante el uso de capturas de pantalla y ejemplos, está destinada a ser especialmente accesible para aquellos sin experiencia previa en Linux.
 
+1. **Update Ubuntu**. *Cuando instala Ubuntu por primera vez, varios paquetes que lo acompañan pueden estar un poco desactualizados. Actualícelos rápidamente a la versión más reciente antes de continuar.* Ingrese los siguientes comandos en la consola de Ubuntu y presione Enter:
 
+```shell
+sudo apt update
+sudo apt upgrade -y
+```
+
+Deberá ingresar su contraseña recién creada y presionar Enter para confirmar algunos de estos comandos.
+
+2. **Instale la versión más reciente de R y las dependencias para RStudio.** *Para instalar la versión más reciente de R en su máquina virtual de Ubuntu, primero deberá agregar una frase clave larga y el repositorio apropiado para descargar R.* Copie y pegue los siguientes comandos en la terminal de Ubuntu y presione Enter:
+
+```shell
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
+sudo add-apt-repository 'deb https://cloud.r-project.org/bin/linux/ubuntu focal-cran40/'
+sudo apt update
+sudo apt install -y r-base r-base-core r-recommended r-base-dev gdebi-core build-essential libcurl4-gnutls-dev libxml2-dev libssl-dev
+```
