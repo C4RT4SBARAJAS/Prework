@@ -48,20 +48,20 @@ Para comprobar la versión de mi windows 10 utilizamos el Ejecutador de tareas y
 ## Instalación de Windows Subsystem for Linux
 Ya podemos instalar WSL. ¡Hagamoslo!
 
-1. Habilite el subsistema de Windows para Linux. Abra PowerShell como administrador (menú Inicio> PowerShell> haga clic con el botón derecho> Ejecutar como administrador) e ingrese este comando:
+1. **Habilite el subsistema de Windows para Linux**. Abra PowerShell como administrador (menú Inicio> PowerShell> haga clic con el botón derecho> Ejecutar como administrador) e ingrese este comando:
 
 ```shell
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 ```
 Damos **Enter** y nos aparecerá el siguiente mensaje: `Enabling feature(s)`. Y al final si todo salio bien: `The operation completed successfully`.
 
-2. Habilitar la función de máquina virtual. Abra PowerShell como administrador y ejecute:
+2. **Habilitar la función de máquina virtual**. Abra PowerShell como administrador y ejecute:
 
 ````shell
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 ````
 
-3. Establezca WSL 2 como su versión predeterminada. Abra PowerShell y ejecute este comando para configurar WSL 2 como la versión predeterminada al instalar una nueva distribución de Linux:
+3. **Establezca WSL 2 como su versión predeterminada**. Abra PowerShell y ejecute este comando para configurar WSL 2 como la versión predeterminada al instalar una nueva distribución de Linux:
 
 ````shell
 wsl --set-default-version 2
@@ -69,7 +69,7 @@ wsl --set-default-version 2
 
 Si nos aparece un error **reinicamos la computadora** y listo. Sino funciona deberemos **habilitar la virtualización en la BIOS**.
 
-4. Instale la distribución de Linux que prefiera. Para este caso usaremos **Ubuntu 20.04 LTS**. Desde la **Microsoft Store**.
+4. **Instale la distribución de Linux que prefiera**. Para este caso usaremos **Ubuntu 20.04 LTS**. Desde la **Microsoft Store**.
 
 5. **Abrimos Ubuntu 20.04 LTS**. La primera vez que inicie una distribución de Linux recién instalada, se abrirá una ventana de consola y se le pedirá que espere uno o dos minutos para que los archivos se descompriman y se almacenen en su PC. Debiendo aparecer el mensaje: `Installation successful!`.
 
@@ -194,3 +194,38 @@ sudo apt update
 ```shell
 sudo apt install -y r-base r-base-core r-recommended r-base-dev gdebi-core build-essential libcurl4-gnutls-dev libxml2-dev libssl-dev
 ```
+
+Nuevamente, es posible que deba ingresar su contraseña recién creada y / o escribir Y y presionar Enter para confirmar algunos de estos comandos.
+
+3. **Verifique la versión de R que se instaló.** *Si todo salió bien, ahora debería tener instalada la versión 4.0.5 (o superior) de R.* Ingrese los siguientes comandos en la consola de Ubuntu y presione Enter:
+
+```shell
+R --version
+```
+
+4. **Instale la versión más reciente de RStudio Server en Ubuntu.** *Aunque ahora podríamos ejecutar R desde la terminal de Ubuntu escribiendo R y presionando enter, será mucho más conveniente instalar RStudio Server (versión gratuita) y usarlo como una interfaz para R en nuestra máquina virtual de Ubuntu.* Copie y pegue los siguientes comandos en la terminal de Ubuntu para descargar la versión más reciente de RStudio Server para Ubuntu.
+
+```shell
+wget https://rstudio.org/download/latest/stable/server/bionic/rstudio-server-latest-amd64.deb
+```
+
+```shell
+sudo gdebi rstudio-server-latest-amd64.deb
+```
+
+5. **Start your RStudio Server.** *Ahora que tenemos RStudio Server instalado, podemos iniciarlo.* Escribe el siguiente comando en la terminal de Ubuntu y presiona Enter.
+
+```shell
+sudo rstudio-server start
+```
+
+6. **Acceda a su servidor RStudio.** *Ahora podemos acceder a nuestro servidor a través de nuestro navegador web favorito (en Windows).* Vaya al siguiente enlace en su navegador web de Windows: http: // localhost: 8787 Deberá iniciar sesión con el nombre de usuario y la contraseña de Ubuntu que estableció al instalar la distrubución de Linux para Windows por primera vez.
+
+7. **Cree (o abra) proyectos de RStudio en el sistema de archivos de Windows.** *Me parece más conveniente guardar los archivos creados en mi máquina virtual Ubuntu en mi sistema de archivos de Windows. Esto me permite administrar mis archivos de entrada y salida en Windows.* En nuestra ventana RStudio Server, haga clic con el botón izquierdo en el menú **"File"** y seleccione **"New project ..."** (o "Abrir proyecto ..."). Navegue por el asistente de creación (o apertura) de proyectos como lo haría normalmente en Windows, pero cuando llegue el momento de seleccionar la ubicación del archivo de su proyecto, haga clic en el **botón** `...` (vea la imagen a continuación), escriba `/ mnt /` y haga clic en **"Aceptar"**. Le mostrará las letras de la unidad en su sistema de archivos de Windows (por ejemplo, **una carpeta llamada c** contendrá todo en la unidad C :). Luego puede elegir la carpeta en su sistema de archivos de Windows en la que desea que **viva el proyecto**.
+
+8. **Stopping your RStudio Server.** *Cuando haya terminado con su sesión, además de cerrar la ventana de su navegador, debe detener su servidor RStudio.* Escriba en la consola de Ubuntu el siguiente comando y presione Enter:
+
+```shell
+sudo rstudio-server stop
+```
+
